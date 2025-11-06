@@ -7,39 +7,60 @@
     <name>FoodTruckAPI</name>
     <url>http://maven.apache.org</url>
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.release>11</maven.compiler.release>
         <junit.version>4.12</junit.version>
         <javax.version>7.0</javax.version>
-        <mysql-version>8.0.16</mysql-version>
+        <mysql.version>8.4.0</mysql.version>
         <jstl-version>1.2</jstl-version>
         <log4j-version>2.17.1</log4j-version>
         <junit-platform-runner-version>1.0.0</junit-platform-runner-version>
         <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
         <maven-surefire-plugin-version>2.19</maven-surefire-plugin-version>
-        <junit.version>4.12</junit.version>
-        <junit-vintage-version>4.12.0</junit-vintage-version>
-        <jupiter-version>5.0.0</jupiter-version>
-        <hibernate-version>6.4.3.Final</hibernate-version>
-        <jersey-version>2.29.1</jersey-version>
+        <junit4.version>4.13.2</junit4.version>
+        <hibernate-version>5.6.15.Final</hibernate-version>
+        <jersey.version>2.41</jersey.version>
+        <jaxb.version>2.3.3</jaxb.version>
     </properties>
     <dependencies>
+        <!-- Jersey (javax.*) for Tomcat 9 -->
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
-            <version>${jersey-version}</version>
+            <version>${jersey.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.glassfish.jersey.inject</groupId>
             <artifactId>jersey-hk2</artifactId>
-            <version>${jersey-version}</version>
+            <version>${jersey.version}</version>
         </dependency>
+
+        <!-- JAXB for JDK 11 (needed by Jersey providers) -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>${jaxb.version}</version>
+        </dependency>
+
+        <!-- Hibernate (javax) -->
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.xml.bind</groupId>
+                    <artifactId>jaxb-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>javax.activation-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
         <!-- c3p0 - used to handle connection pooling with hibernate -->
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-c3p0 -->
         <dependency>
@@ -47,23 +68,16 @@
             <artifactId>hibernate-c3p0</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
+
+        <!-- MySQL JDBC (LTS), runtime only -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>${mysql.version}</version>
+            <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>${javax.version}</version>
-        </dependency>
-        <!--  https://mvnrepository.com/artifact/mysql/mysql-connector-java  -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-version}</version>
-        </dependency>
+
+        <!-- Logging -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -74,27 +88,27 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j-version}</version>
         </dependency>
+
+        <!-- JSTL -->
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>${jstl-version}</version>
         </dependency>
+
+        <!-- Java EE API (provided by Tomcat) -->
         <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-runner</artifactId>
-            <version>${junit-platform-runner-version}</version>
-            <scope>test</scope>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>${javax.version}</version>
+            <scope>provided</scope>
         </dependency>
+
+        <!-- Tests: JUnit 4 only (simplest, matches class scope) -->
         <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>${junit-vintage-version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${jupiter-version}</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit4.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
