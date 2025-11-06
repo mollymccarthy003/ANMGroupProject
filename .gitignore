@@ -1,0 +1,76 @@
+
+
+# ---- Java / Maven ----
+# Build output
+/target/
+
+# Compiled classes and archives
+*.class
+*.jar
+*.war
+*.ear
+
+# JVM crash logs / heap dumps
+hs_err_pid*
+*.hprof
+
+# Maven-specific noisy files
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# If you use the Maven Wrapper, keep these tracked (do NOT ignore):
+# mvnw
+# mvnw.cmd
+# .mvn/wrapper/maven-wrapper.jar
+# .mvn/wrapper/maven-wrapper.properties
+
+# ---- IDEs ----
+# IntelliJ IDEA / JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# NetBeans
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+nbactions.xml
+nb-configuration.xml
+
+# ---- Logs ----
+*.log
+logs/
+log/
+
+# ---- OS / Misc ----
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors / temp files
+*.swp
+*.swo
+*~
+*.tmp
+*.bak
+
+/.idea/
