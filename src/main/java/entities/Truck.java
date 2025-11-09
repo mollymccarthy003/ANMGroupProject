@@ -14,7 +14,7 @@ public class Truck {
     @Column(name = "name")
     private String name;
 
-    @Columm(name="food_type")
+    @Column(name="food_type")
     private String foodType;
 
     /**
@@ -30,7 +30,8 @@ public class Truck {
      *
      */
     public Truck(String name, String foodType) {
-
+        this.name = name;
+        this.foodType = foodType;
     }
 
     /**
