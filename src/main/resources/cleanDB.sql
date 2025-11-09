@@ -12,7 +12,7 @@ CREATE TABLE food_trucks (
 );
 
 -- Creates locations table --
-CREATE TABLE locations(
+CREATE TABLE locations (
     id          INT             AUTO_INCREMENT  PRIMARY KEY,
     name        VARCHAR(100)    NULL,
     address     VARCHAR(100)    NOT NULL,
