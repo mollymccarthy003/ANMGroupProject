@@ -1,5 +1,7 @@
 package entities;
 
+import persistence.TruckData;
+import persistence.LocationData;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -32,6 +34,39 @@ public class Schedule {
     private String endTime;
 
     /**
+     * Default constructor
+     *
+     */
+    public Schedule() {
+
+    }
+
+    /**
+     * Constructor that sets all variables
+     *
+     * @param truckId - used to get Truck data
+     * @param locationId - used to get Location data
+     * @param dayOfWeek - day of the week
+     * @param date - date
+     * @param startTime - state time
+     * @param endTime - end time
+     */
+    public Schedule(int truckId, int locationId, String dayOfWeek, String date, String startTime, String endTime ) {
+        TruckData truckData = new TruckData();
+        LocationData locationData = new LocationData();
+
+        Truck truck = truckData.getById(truckId);
+        Location location = locationData.getById(locationId);
+
+        this.truck = truck;
+        this.location = location;
+        this.dayOfWeek = dayOfWeek;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    /**
      * Getter for id
      *
      * @return id
@@ -43,19 +78,28 @@ public class Schedule {
     /**
      * Getter for truck id
      *
-     * @return truckId
+     * @return truck
      */
-    public int getTruckId() {
-        return truck.getId();
+    public Truck getTruck() {
+        return truck;
     }
 
     /**
-     * Getter for location id
+     * Setter for truck
      *
-     * @return location id
+     * @param truck - a food truck
      */
-    public int getLocationid() {
-        return location.getId();
+    public void setTruck(Truck truck) {
+        this.truck = truck;
+    }
+
+    /**
+     * Getter for location
+     *
+     * @return location
+     */
+    public Location getLocation() {
+        return location;
     }
 
     /**
@@ -122,7 +166,7 @@ public class Schedule {
     }
 
     /**
-     * Setter for start time
+     * Setter for end time
      *
      * @param endTime - end time (e.g. 4:00pm)
      */

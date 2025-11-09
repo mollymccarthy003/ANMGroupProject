@@ -52,7 +52,13 @@ public class Location {
      * @param longitude - location longitude
      */
     public Location(String name, String address, String state, int zip, String country, double latitude, double longitude) {
-
+        this.name = name;
+        this.address = address;
+        this.state = state;
+        this.zip = zip;
+        this.country = country;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
 
