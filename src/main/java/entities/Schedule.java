@@ -31,11 +31,24 @@ public class Schedule {
     @Column(name = "end_time")
     private String endTime;
 
-
+    /**
+     * Default constructor
+     *
+     */
     public Schedule() {
 
     }
 
+    /**
+     * Constructor that sets all vairables
+     *
+     * @param truckId - used to get Truck data
+     * @param locationId - used to get Location data
+     * @param dayOfWeek - day of the week
+     * @param date - date
+     * @param startTime - state time
+     * @param endTime - end time
+     */
     public Schedule(int truckId, int locationId, String dayOfWeek, String date, String startTime, String endTime ) {
         // TODO: implement these DAO's
         Truck truckData = new TruckData();
