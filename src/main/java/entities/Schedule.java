@@ -31,6 +31,27 @@ public class Schedule {
     @Column(name = "end_time")
     private String endTime;
 
+
+    public Schedule() {
+
+    }
+
+    public Schedule(int truckId, int locationId, String dayOfWeek, String date, String startTime, String endTime ) {
+        // TODO: implement these DAO's
+        Truck truckData = new TruckData();
+        Location locationData = new LocationData();
+
+        Truck truck = truckData.getById(truckId);
+        Location location = locationData.getById(locationId);
+
+        this.truck = truck;
+        this.location = location;
+        this.dayOfWeek = dayOfWeek;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     /**
      * Getter for id
      *
@@ -43,19 +64,28 @@ public class Schedule {
     /**
      * Getter for truck id
      *
-     * @return truckId
+     * @return truck
      */
-    public int getTruckId() {
-        return truck.getId();
+    public Truck getTruck() {
+        return truck;
     }
 
     /**
-     * Getter for location id
+     * Setter for truck
      *
-     * @return location id
+     * @param truck - a food truck
      */
-    public int getLocationid() {
-        return location.getId();
+    public void setTruck(Truck truck) {
+        this.truck = truck;
+    }
+
+    /**
+     * Getter for location
+     *
+     * @return location
+     */
+    public Location getLocation() {
+        return location;
     }
 
     /**
@@ -122,7 +152,7 @@ public class Schedule {
     }
 
     /**
-     * Setter for start time
+     * Setter for end time
      *
      * @param endTime - end time (e.g. 4:00pm)
      */
