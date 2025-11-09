@@ -1,5 +1,7 @@
 package entities;
 
+import persistence.TruckData;
+import persistence.LocationData;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -40,7 +42,7 @@ public class Schedule {
     }
 
     /**
-     * Constructor that sets all vairables
+     * Constructor that sets all variables
      *
      * @param truckId - used to get Truck data
      * @param locationId - used to get Location data
@@ -50,9 +52,8 @@ public class Schedule {
      * @param endTime - end time
      */
     public Schedule(int truckId, int locationId, String dayOfWeek, String date, String startTime, String endTime ) {
-        // TODO: implement these DAO's
-        Truck truckData = new TruckData();
-        Location locationData = new LocationData();
+        TruckData truckData = new TruckData();
+        LocationData locationData = new LocationData();
 
         Truck truck = truckData.getById(truckId);
         Location location = locationData.getById(locationId);
