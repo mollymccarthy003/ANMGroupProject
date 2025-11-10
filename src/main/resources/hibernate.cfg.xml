@@ -14,8 +14,9 @@
         <property name="hibernate.c3p0.idle_test_period">3000</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 
-        <!-- TODO: map the proper classes -->
-<!--        <mapping class="entity.User"/>-->
-<!--        <mapping class="entity.Family"/>-->
+        <mapping class="com.foodtruck.entities.Location"/>
+        <mapping class="com.foodtruck.entities.Schedule"/>
+        <mapping class="com.foodtruck.entities.Truck"/>
+
     </session-factory>
 </hibernate-configuration>

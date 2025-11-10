@@ -74,8 +74,8 @@ Instead of building their own databases from scratch, **developers** can use thi
 
 ## Roles (TBD)
 
-| Name     | Role                       | Description                                                                              |
-|----------|----------------------------|------------------------------------------------------------------------------------------|
-| Nick     | Swagger/API Documentation/UI | Write Swagger Annotations, test endpoints, hosted swagger ui, |
+| Name     | Role                       | Description                                                                             |
+|----------|----------------------------|-----------------------------------------------------------------------------------------|
+| Nick     | Swagger/API Documentation/UI | Write Swagger Annotations, test endpoints, hosted swagger ui |
 | Molly M  | API Endpoints| Controllers/servlets working, json response for each endpoint, integrate w/dao|
 | Austin S | Database and Models | SQL script for tables/relationships, java entity and dto classes, sample data for testing |
