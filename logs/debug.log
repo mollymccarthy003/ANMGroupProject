@@ -1,0 +1,5 @@
+[INFO ] 2025-11-10 14:03:42.383 [RMI TCP Connection(2)-127.0.0.1] ApplicationConfig - Initializing JAX-RS Application
+[DEBUG] 2025-11-10 14:03:42.396 [RMI TCP Connection(2)-127.0.0.1] ApplicationConfig - Registered resources: [class io.swagger.v3.jaxrs2.integration.resources.OpenApiResource, class com.foodtruck.app.Service]
+[DEBUG] 2025-11-10 14:03:42.396 [RMI TCP Connection(2)-127.0.0.1] ApplicationConfig - Registered resources: [class io.swagger.v3.jaxrs2.integration.resources.OpenApiResource, class com.foodtruck.app.Service]
+[INFO ] 2025-11-10 14:08:25.234 [RMI TCP Connection(2)-127.0.0.1] ApplicationConfig - Registered REST resources and Swagger OpenApiResource
+[INFO ] 2025-11-10 14:08:25.253 [RMI TCP Connection(2)-127.0.0.1] ApplicationConfig - Registered REST resources and Swagger OpenApiResource

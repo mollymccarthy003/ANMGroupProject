@@ -1,1 +1,12 @@
+com\foodtruck\persistence\SessionFactoryProvider.class
+com\foodtruck\persistence\LocationData.class
+com\foodtruck\restdemo\HelloApplication.class
 com\foodtruck\restdemo\HelloWorld.class
+com\foodtruck\app\SwaggerConfig.class
+com\foodtruck\app\Service.class
+com\foodtruck\app\App.class
+com\foodtruck\persistence\GenericDao.class
+com\foodtruck\entities\Schedule.class
+com\foodtruck\persistence\TruckData.class
+com\foodtruck\entities\Truck.class
+com\foodtruck\entities\Location.class

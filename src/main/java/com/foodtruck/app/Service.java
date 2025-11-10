@@ -42,7 +42,9 @@ public class Service {
             }
     )
     public Response getAllTrucks() {
+        logger.debug("GET /trucks called");
         List<Truck> trucks = truckDao.getAll();
+        logger.debug("Found " + trucks.size() + " trucks");
         return Response.ok(trucks).build();
     }
 
@@ -146,12 +148,15 @@ public class Service {
         List<Schedule> results;
 
         if (date != null && locationId != null) {
+            // Filter by date first
             results = scheduleDao.getByPropertyEqual("date", date);
-            results.removeIf(s -> s.getLocationId() != locationId); // filter by location
+            // Then filter by location
+            results.removeIf(s -> s.getLocation() == null || s.getLocation().getLocationId() != locationId);
         } else if (date != null) {
             results = scheduleDao.getByPropertyEqual("date", date);
         } else if (locationId != null) {
-            results = scheduleDao.getByPropertyEqual("locationId", locationId.toString());
+            results = scheduleDao.getAll();
+            results.removeIf(s -> s.getLocation() == null || s.getLocation().getLocationId() != locationId);
         } else {
             results = scheduleDao.getAll();
         }

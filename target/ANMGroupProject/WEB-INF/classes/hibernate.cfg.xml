@@ -1,0 +1,22 @@
+<!--TODO: fill out missing info-->
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url"></property>
+        <property name="connection.driver_class"></property>
+
+        <property name="connection.username"></property>
+        <property name="connection.password"></property>
+
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.timeout">300</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+        <property name="hibernate.c3p0.idle_test_period">3000</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <mapping class="com.foodtruck.entities.Location"/>
+        <mapping class="com.foodtruck.entities.Schedule"/>
+        <mapping class="com.foodtruck.entities.Truck"/>
+
+    </session-factory>
+</hibernate-configuration>
