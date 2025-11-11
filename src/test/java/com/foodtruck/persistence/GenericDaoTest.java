@@ -1,29 +1,26 @@
 package com.foodtruck.persistence;
 
-import com.foodtruck.util.Database;
 import com.foodtruck.entities.Location;
 import com.foodtruck.entities.Schedule;
 import com.foodtruck.entities.Truck;
+import com.foodtruck.testsupport.DbReset;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 import static org.junit.Assert.*;
 
-// Generic DAO tests to be implemented later
-public class GenericDaoTest {
+public class GenericDaoTest extends DbReset {
 
     private GenericDao<Truck> truckDao;
     private GenericDao<Location> locationDao;
     private GenericDao<Schedule> scheduleDao;
 
     @Before
-    public void setUp() {
-        Database database = Database.getInstance();
-        database.runSQL("cleanDB.sql");
-        truckDao = new GenericDao<>(Truck.class);
-        locationDao = new GenericDao<>(Location.class);
-        scheduleDao = new GenericDao<>(Schedule.class);
+    public void initializeDaos() {
+        truckDao = dao(Truck.class);
+        locationDao = dao(Location.class);
+        scheduleDao = dao(Schedule.class);
     }
 
     //----------------------------
