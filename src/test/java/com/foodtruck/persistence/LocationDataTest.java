@@ -1,7 +1,7 @@
 package com.foodtruck.persistence;
 
-import com.foodtruck.util.Database;
 import com.foodtruck.entities.Location;
+import com.foodtruck.testsupport.DbReset;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
@@ -9,18 +9,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class LocationDataTest {
+public class LocationDataTest extends DbReset {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     private LocationData locationData;
 
     @Before
-    public void setUp() {
-        // Reset DB
-        Database database = Database.getInstance();
-        database.runSQL("cleanDB.sql");
-
-        // Init DAO
+    public void initializeDaos() {
         locationData = new LocationData();
     }
 
