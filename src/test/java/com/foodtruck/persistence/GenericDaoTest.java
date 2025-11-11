@@ -61,6 +61,24 @@ public class GenericDaoTest {
     }
 
     @Test
+    public void truckDeletionCascadesToSchedules() {
+        // Create truck, location, and schedule
+        Truck testTruck = new Truck("Cascade Test Truck", "Test Food");
+        int truckId = truckDao.insert(testTruck);
+        Location testLocation = new Location("Cascade Test Location", "123 Cascade St", "WI", 12345, "USA", 43.07, -89.40);
+        int locationId = locationDao.insert(testLocation);
+        Schedule testSchedule = new Schedule(truckId, locationId, "Friday", "2024-10-11", "11:00", "15:00");
+        int scheduleId = scheduleDao.insert(testSchedule);
+
+        // Delete the truck
+        Truck truckParent = truckDao.getById(truckId);
+        truckDao.delete(truckParent);
+
+        // Verify the schedule is also deleted
+        assertNull(scheduleDao.getById(scheduleId));
+    }
+
+    @Test
     public void truckGetAllAndCheck() {
         truckDao.insert(new Truck("Burger Bus", "Burgers"));
         truckDao.insert(new Truck("Sushi Stop", "Sushi"));
@@ -135,10 +153,28 @@ public class GenericDaoTest {
 
     @Test
     public void locationDeleteSuccess() {
-        int id = locationDao.insert(new Location("Delete Me", "000 Nowhere", "WI", 00000, "USA", 0.0, 0.0));
+        int id = locationDao.insert(new Location("Delete Me", "111 Nowhere", "WI", 12345, "USA", 0.0, 0.0));
         Location locationToDelete = locationDao.getById(id);
         locationDao.delete(locationToDelete);
         assertNull(locationDao.getById(id));
+    }
+
+    @Test
+    public void locationDeletionCascadesToSchedules() {
+        // Create truck, location, and schedule
+        Truck testTruck = new Truck("Cascade Location Truck", "Test Food");
+        int truckId = truckDao.insert(testTruck);
+        Location testLocation = new Location("Cascade Location", "123 Cascade St", "WI", 12345, "USA", 43.07, -89.40);
+        int locationId = locationDao.insert(testLocation);
+        Schedule testSchedule = new Schedule(truckId, locationId, "Saturday", "2024-10-12", "12:00", "16:00");
+        int scheduleId = scheduleDao.insert(testSchedule);
+
+        // Delete the location
+        Location locationParent = locationDao.getById(locationId);
+        locationDao.delete(locationParent);
+
+        // Verify the schedule is also deleted
+        assertNull(scheduleDao.getById(scheduleId));
     }
 
     @Test
@@ -183,6 +219,23 @@ public class GenericDaoTest {
     }
 
     @Test
+    public void scheduleDeletionDoesNotDeleteParents() {
+        Location testLocation = new Location("Keep Location", "999 Nowhere St", "WI", 99999, "USA", 0.0, 0.0);
+        int locationId = locationDao.insert(testLocation);
+        Truck testTruck = new Truck("Keep Truck", "Test Food");
+        int truckId = truckDao.insert(testTruck);
+        Schedule testSchedule = new Schedule(truckId, locationId, "Monday", "2024-10-01", "09:00", "13:00");
+        int scheduleId = scheduleDao.insert(testSchedule);
+
+        // Delete schedule
+        scheduleDao.delete(scheduleDao.getById(scheduleId));
+
+        // Verify truck and location still exist
+        assertNotNull(truckDao.getById(truckId));
+        assertNotNull(locationDao.getById(locationId));
+    }
+
+    @Test
     public void scheduleUpdateSuccess() {
         Truck testTruck = new Truck("Update Test Truck", "Test Food");
         int truckId = truckDao.insert(testTruck);
@@ -214,6 +267,24 @@ public class GenericDaoTest {
         Schedule retrievedSchedule = scheduleDao.getById(scheduleId);
         scheduleDao.delete(retrievedSchedule);
         assertNull(scheduleDao.getById(scheduleId));
+    }
+
+    @Test
+    public void scheduleDeletionDoesNotCascadeToTruckOrLocation() {
+        Truck testTruck = new Truck("Non-Cascade Truck", "Test Food");
+        int truckId = truckDao.insert(testTruck);
+        Location testLocation = new Location("Non-Cascade Location", "321 NonCascade St", "WI", 11223, "USA", 46.00, -86.00);
+        int locationId = locationDao.insert(testLocation);
+        Schedule scheduleToDelete = new Schedule(truckId, locationId, "Sunday", "2024-08-08", "08:00", "12:00");
+        int scheduleId = scheduleDao.insert(scheduleToDelete);
+
+        // Delete the schedule
+        Schedule retrievedSchedule = scheduleDao.getById(scheduleId);
+        scheduleDao.delete(retrievedSchedule);
+
+        // Verify the truck and location still exist
+        assertNotNull(truckDao.getById(truckId));
+        assertNotNull(locationDao.getById(locationId));
     }
 
     @Test
