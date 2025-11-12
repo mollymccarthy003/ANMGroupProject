@@ -44,6 +44,14 @@ public class Truck {
     }
 
     /**
+     * Setter for truck id
+     *
+     */
+    public void setId(int id) {
+
+    }
+
+    /**
      * Getter for the truck name
      *
      * @return name

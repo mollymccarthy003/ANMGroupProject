@@ -44,20 +44,14 @@ public class Schedule {
     /**
      * Constructor that sets all variables
      *
-     * @param truckId - used to get Truck data
-     * @param locationId - used to get Location data
+     * @param truck - used to get Truck data
+     * @param location - used to get Location data
      * @param dayOfWeek - day of the week
      * @param date - date
      * @param startTime - state time
      * @param endTime - end time
      */
-    public Schedule(int truckId, int locationId, String dayOfWeek, String date, String startTime, String endTime ) {
-        TruckData truckData = new TruckData();
-        LocationData locationData = new LocationData();
-
-        Truck truck = truckData.getById(truckId);
-        Location location = locationData.getById(locationId);
-
+    public Schedule(Truck truck, Location location, String dayOfWeek, String date, String startTime, String endTime ) {
         this.truck = truck;
         this.location = location;
         this.dayOfWeek = dayOfWeek;
@@ -73,6 +67,14 @@ public class Schedule {
      */
     public int getId() {
         return id;
+    }
+
+    /**
+     * Setter for id
+     *
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
