@@ -1,2 +1,8 @@
+persistence\TruckData.class
 org\foodtruck\restdemo\HelloApplication.class
+entities\Truck.class
+persistence\LocationData.class
+persistence\SessionFactoryProvider.class
+entities\Location.class
+entities\Schedule.class
 org\foodtruck\restdemo\HelloWorld.class

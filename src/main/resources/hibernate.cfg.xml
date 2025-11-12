@@ -1,11 +1,10 @@
-<!--TODO: fill out missing info-->
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url"></property>
-        <property name="connection.driver_class"></property>
+        <property name="connection.url">jdbc:mysql://awseb-e-h6jpes4r8q-stack-awsebrdsdatabase-e0aewxnsobwl.cr2em0y4ofo8.us-east-2.rds.amazonaws.com:3306/ebdb</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 
-        <property name="connection.username"></property>
-        <property name="connection.password"></property>
+        <property name="connection.username">aspriggs</property>
+        <property name="connection.password">anmGroup</property>
 
         <property name="hibernate.c3p0.min_size">5</property>
         <property name="hibernate.c3p0.max_size">20</property>
@@ -14,8 +13,8 @@
         <property name="hibernate.c3p0.idle_test_period">3000</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 
-        <!-- TODO: map the proper classes -->
-<!--        <mapping class="entity.User"/>-->
-<!--        <mapping class="entity.Family"/>-->
+        <mapping class="entities.Truck" />
+        <mapping class="entities.Location" />
+        <mapping class="entities.Schedule" />
     </session-factory>
 </hibernate-configuration>
