@@ -75,8 +75,16 @@ public class Location {
      *
      * @return id
      */
-    public int getLocationId() {
+    public int getId() {
         return id;
+    }
+
+    /**
+     * Setter for location id
+     *
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
