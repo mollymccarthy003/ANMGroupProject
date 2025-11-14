@@ -7,7 +7,7 @@ public abstract class DbReset {
     @Before
     public void setUp() {
         Database database = Database.getInstance();
-        database.runSQL("cleandb.sql");
+        database.runSQL("cleanDB.sql");
     }
 
     // Mini-helper method to get dao objects
