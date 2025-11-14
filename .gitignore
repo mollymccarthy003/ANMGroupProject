@@ -1,0 +1,56 @@
+# Maven build output
+/target/
+target/ANMGroupProject/
+target/classes/
+target/maven-status/
+target/ANMGroupProject.war
+
+# IntelliJ IDEA project files
+.idea/
+*.iml
+out/
+
+# Eclipse project files
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# Logs and runtime artifacts
+logs/
+*.log
+
+# Packaged artifacts
+*.war
+*.ear
+*.jar
+
+# OS / Editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Generated sources (Maven default inside target, but in case outside)
+/generated-sources/
+/generated-test-sources/
+
+# Dependency reduced POM (from maven-shade-plugin)
+dependency-reduced-pom.xml
+
+# Local environment / secrets (add if you create one)
+.env
+
+# Temporary files
+*.tmp
+
+# If you ever store test coverage reports
+coverage/
+
+# Node-related (in case swagger UI build pulls one in later)
+node_modules/
+
+# Keep configuration files (hibernate.cfg.xml) tracked; do NOT ignore them.
+# Add patterns below only if you introduce environment-specific overrides.
