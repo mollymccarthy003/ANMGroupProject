@@ -1,7 +1,5 @@
 package com.foodtruck.entities;
 
-import com.foodtruck.persistence.TruckData;
-import com.foodtruck.persistence.LocationData;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonManagedReference;

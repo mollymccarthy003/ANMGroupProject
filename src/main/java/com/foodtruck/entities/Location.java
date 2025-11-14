@@ -30,10 +30,10 @@ public class Location {
     private String country;
 
     @Column(name = "latitude")
-    private double latitude;
+    private Double latitude;
 
     @Column(name = "longitude")
-    private double longitude;
+    private Double longitude;
 
     @OneToMany(mappedBy = "location")
     @JsonBackReference
@@ -177,7 +177,7 @@ public class Location {
      *
      * @return latitude
      */
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
@@ -186,7 +186,7 @@ public class Location {
      *
      * @param latitude - location latitude
      */
-    public void setLatitude(double latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
@@ -195,7 +195,7 @@ public class Location {
      *
      * @return longitude
      */
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
@@ -204,7 +204,7 @@ public class Location {
      *
      * @param longitude - location longitude
      */
-    public void setLongitude(double longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 }
