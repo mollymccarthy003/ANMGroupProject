@@ -61,14 +61,14 @@ public class GenericDaoTest extends DbReset {
     public void truckDeletionCascadesToSchedules() {
         // Create truck, location, and schedule
         Truck testTruck = new Truck("Cascade Test Truck", "Test Food");
-        int truckId = truckDao.insert(testTruck);
+        truckDao.insert(testTruck);
         Location testLocation = new Location("Cascade Test Location", "123 Cascade St", "WI", 12345, "USA", 43.07, -89.40);
-        int locationId = locationDao.insert(testLocation);
-        Schedule testSchedule = new Schedule(truckId, locationId, "Friday", "2024-10-11", "11:00", "15:00");
+        locationDao.insert(testLocation);
+        Schedule testSchedule = new Schedule(testTruck, testLocation, "Friday", "2024-10-11", "11:00", "15:00");
         int scheduleId = scheduleDao.insert(testSchedule);
 
         // Delete the truck
-        Truck truckParent = truckDao.getById(truckId);
+        Truck truckParent = truckDao.getById(testTruck.getId());
         truckDao.delete(truckParent);
 
         // Verify the schedule is also deleted
@@ -160,10 +160,10 @@ public class GenericDaoTest extends DbReset {
     public void locationDeletionCascadesToSchedules() {
         // Create truck, location, and schedule
         Truck testTruck = new Truck("Cascade Location Truck", "Test Food");
-        int truckId = truckDao.insert(testTruck);
+        truckDao.insert(testTruck);
         Location testLocation = new Location("Cascade Location", "123 Cascade St", "WI", 12345, "USA", 43.07, -89.40);
         int locationId = locationDao.insert(testLocation);
-        Schedule testSchedule = new Schedule(truckId, locationId, "Saturday", "2024-10-12", "12:00", "16:00");
+        Schedule testSchedule = new Schedule(testTruck, testLocation, "Saturday", "2024-10-12", "12:00", "16:00");
         int scheduleId = scheduleDao.insert(testSchedule);
 
         // Delete the location
@@ -200,10 +200,10 @@ public class GenericDaoTest extends DbReset {
     @Test
     public void scheduleInsertSuccess() {
         Truck testTruck = new Truck("Schedule Test Truck", "Test Food");
-        int truckId = truckDao.insert(testTruck);
+        truckDao.insert(testTruck);
         Location testLocation = new Location("Schedule Test Location", "123 Schedule St", "WI", 12345, "USA", 43.07, -89.40);
-        int locationId = locationDao.insert(testLocation);
-        Schedule testSchedule = new Schedule(truckId, locationId, "Wednesday", "2024-10-10", "10:00", "14:00");
+        locationDao.insert(testLocation);
+        Schedule testSchedule = new Schedule(testTruck, testLocation, "Wednesday", "2024-10-10", "10:00", "14:00");
         int scheduleId = scheduleDao.insert(testSchedule);
         Schedule retrievedSchedule = scheduleDao.getById(scheduleId);
         assertNotNull(retrievedSchedule);
@@ -212,16 +212,16 @@ public class GenericDaoTest extends DbReset {
         assertEquals("10:00", retrievedSchedule.getStartTime());
         assertEquals("14:00", retrievedSchedule.getEndTime());
         assertEquals(testTruck.getId(), retrievedSchedule.getTruck().getId());
-        assertEquals(testLocation.getLocationId(), retrievedSchedule.getLocation().getLocationId());
+        assertEquals(testLocation.getId(), retrievedSchedule.getLocation().getId());
     }
 
     @Test
     public void scheduleDeletionDoesNotDeleteParents() {
-        Location testLocation = new Location("Keep Location", "999 Nowhere St", "WI", 99999, "USA", 0.0, 0.0);
-        int locationId = locationDao.insert(testLocation);
         Truck testTruck = new Truck("Keep Truck", "Test Food");
         int truckId = truckDao.insert(testTruck);
-        Schedule testSchedule = new Schedule(truckId, locationId, "Monday", "2024-10-01", "09:00", "13:00");
+        Location testLocation = new Location("Keep Location", "999 Nowhere St", "WI", 99999, "USA", 0.0, 0.0);
+        int locationId = locationDao.insert(testLocation);
+        Schedule testSchedule = new Schedule(testTruck, testLocation, "Monday", "2024-10-01", "09:00", "13:00");
         int scheduleId = scheduleDao.insert(testSchedule);
 
         // Delete schedule
@@ -235,10 +235,10 @@ public class GenericDaoTest extends DbReset {
     @Test
     public void scheduleUpdateSuccess() {
         Truck testTruck = new Truck("Update Test Truck", "Test Food");
-        int truckId = truckDao.insert(testTruck);
+        truckDao.insert(testTruck);
         Location testLocation = new Location("Update Test Location", "456 Update St", "WI", 54321, "USA", 44.00, -88.00);
-        int locationId = locationDao.insert(testLocation);
-        Schedule scheduleToUpdate = new Schedule(truckId, locationId, "Wednesday", "2024-11-11", "11:00", "15:00");
+        locationDao.insert(testLocation);
+        Schedule scheduleToUpdate = new Schedule(testTruck, testLocation, "Wednesday", "2024-11-11", "11:00", "15:00");
         int scheduleId = scheduleDao.insert(scheduleToUpdate);
         Schedule retrievedSchedule = scheduleDao.getById(scheduleId);
         retrievedSchedule.setDayOfWeek("Thursday");
@@ -256,10 +256,10 @@ public class GenericDaoTest extends DbReset {
     @Test
     public void scheduleDeleteSuccess() {
         Truck testTruck = new Truck("Delete Test Truck", "Test Food");
-        int truckId = truckDao.insert(testTruck);
+        truckDao.insert(testTruck);
         Location testLocation = new Location("Delete Test Location", "789 Delete St", "WI", 67890, "USA", 45.00, -87.00);
-        int locationId = locationDao.insert(testLocation);
-        Schedule scheduleToDelete = new Schedule(truckId, locationId, "Wednesday" , "2024-09-09", "09:00", "13:00");
+        locationDao.insert(testLocation);
+        Schedule scheduleToDelete = new Schedule(testTruck, testLocation, "Wednesday" , "2024-09-09", "09:00", "13:00");
         int scheduleId = scheduleDao.insert(scheduleToDelete);
         Schedule retrievedSchedule = scheduleDao.getById(scheduleId);
         scheduleDao.delete(retrievedSchedule);
@@ -272,7 +272,7 @@ public class GenericDaoTest extends DbReset {
         int truckId = truckDao.insert(testTruck);
         Location testLocation = new Location("Non-Cascade Location", "321 NonCascade St", "WI", 11223, "USA", 46.00, -86.00);
         int locationId = locationDao.insert(testLocation);
-        Schedule scheduleToDelete = new Schedule(truckId, locationId, "Sunday", "2024-08-08", "08:00", "12:00");
+        Schedule scheduleToDelete = new Schedule(testTruck, testLocation, "Sunday", "2024-08-08", "08:00", "12:00");
         int scheduleId = scheduleDao.insert(scheduleToDelete);
 
         // Delete the schedule

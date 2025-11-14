@@ -151,12 +151,12 @@ public class Service {
             // Filter by date first
             results = scheduleDao.getByPropertyEqual("date", date);
             // Then filter by location
-            results.removeIf(s -> s.getLocation() == null || s.getLocation().getLocationId() != locationId);
+            results.removeIf(s -> s.getLocation() == null || s.getLocation().getId() != locationId);
         } else if (date != null) {
             results = scheduleDao.getByPropertyEqual("date", date);
         } else if (locationId != null) {
             results = scheduleDao.getAll();
-            results.removeIf(s -> s.getLocation() == null || s.getLocation().getLocationId() != locationId);
+            results.removeIf(s -> s.getLocation() == null || s.getLocation().getId() != locationId);
         } else {
             results = scheduleDao.getAll();
         }

@@ -1,5 +1,8 @@
 package com.foodtruck.persistence;
 
+import com.foodtruck.entities.Location;
+import com.foodtruck.entities.Schedule;
+import com.foodtruck.entities.Truck;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -23,10 +26,13 @@ public class SessionFactoryProvider {
     public static void createSessionFactory() {
 
         // Create registry
-        registry = new StandardServiceRegistryBuilder().configure().build();
+        registry = new StandardServiceRegistryBuilder().build();
 
-        // Create MetadataSources
-        MetadataSources sources = new MetadataSources(registry);
+        // Register annotated entities
+        MetadataSources sources = new MetadataSources(registry)
+                .addAnnotatedClass(Truck.class)
+                .addAnnotatedClass(Location.class)
+                .addAnnotatedClass(Schedule.class);
 
         // Create Metadata
         Metadata metadata = sources.getMetadataBuilder().build();
