@@ -31,7 +31,7 @@ public class ScheduleDaoTest extends DbReset {
         assertEquals("8:00am", schedule.getStartTime());
         assertEquals("4:00pm", schedule.getEndTime());
         assertEquals(1, schedule.getTruck().getId());
-        assertEquals(1, schedule.getLocation().getLocationId());
+        assertEquals(1, schedule.getLocation().getId());
     }
 
     @Test
