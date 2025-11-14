@@ -9,7 +9,7 @@ Instead of building their own databases from scratch, **developers** can use thi
 ## 🎯 Objectives
 
 - Provide a well-documented RESTful API for developers to integrate food truck data into apps or websites.
-- Allow food truck owners to add, update, or delete their truck information and schedules.
+- Allow food truck owners to add, update, or delete their truck information and schedule.
 - Enable filtering and search by location or date (e.g., “Show all trucks in Madison today”).
 - Ensure that API responses are consistent, well-structured, and easily consumable by frontend or mobile clients.
 - Build the foundation for a future public-facing Food Truck Locator web or mobile application.
@@ -72,10 +72,10 @@ Instead of building their own databases from scratch, **developers** can use thi
 
 ---
 
-## Roles (TBD)
+## 👩‍💻 Team Members and Roles
 
-| Name     | Role                       | Description                                                                             |
-|----------|----------------------------|-----------------------------------------------------------------------------------------|
-| Nick     | Swagger/API Documentation/UI | Write Swagger Annotations, test endpoints, hosted swagger ui |
-| Molly M  | API Endpoints| Controllers/servlets working, json response for each endpoint, integrate w/dao|
-| Austin S | Database and Models | SQL script for tables/relationships, java entity and dto classes, sample data for testing |
+| Name               | Role                         | Responsibilities |
+|--------------------|------------------------------|------------------|
+| **Austin Spriggs** | *Database & Models Lead*     | Designs database schema, writes SQL scripts, and creates entity classes. Ensures correct relationships and data integrity. |
+| **Molly McCarthy** | *API & Controller Developer* | Implements REST endpoints, handles requests and responses, and connects controllers to the data layer. Responsible for business logic and JSON response structure. |
+| **Nick Hanson**    | *Unit Testing and Swagger*   | Creates Swagger/OpenAPI specification, sets up Swagger UI for testing, and ensures documentation matches API functionality. Performs endpoint testing and debugging. |
