@@ -54,3 +54,5 @@ node_modules/
 
 # Keep configuration files (hibernate.cfg.xml) tracked; do NOT ignore them.
 # Add patterns below only if you introduce environment-specific overrides.
+
+/src/test/resources/database.properties
