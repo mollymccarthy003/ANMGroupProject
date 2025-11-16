@@ -17,10 +17,15 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+//Jackson imports
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Path("/api")
 @Tag(name = "Food Truck API", description = "Operations for managing food trucks and schedules")
 public class Service {
 
+    private final ObjectMapper objectMapper = new ObjectMapper();
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     private final GenericDao<Truck> truckDao = new GenericDao<>(Truck.class);
@@ -45,7 +50,20 @@ public class Service {
         logger.debug("GET /trucks called");
         List<Truck> trucks = truckDao.getAll();
         logger.debug("Found " + trucks.size() + " trucks");
-        return Response.ok(trucks).build();
+
+        try {
+            String json = objectMapper.writeValueAsString(trucks);
+            return Response
+                    .ok(json, MediaType.APPLICATION_JSON)
+                    .build();
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to serialize trucks to JSON", e);
+            return Response
+                    .serverError()
+                    .entity("{\"error\":\"Failed to serialize response\"}")
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        }
     }
 
     @GET
@@ -64,7 +82,17 @@ public class Service {
             @PathParam("id") int id) {
         Truck truck = truckDao.getById(id);
         if (truck == null) return Response.status(Response.Status.NOT_FOUND).build();
-        return Response.ok(truck).build();
+
+        try {
+            String json = objectMapper.writeValueAsString(truck);
+            return Response.ok(json, MediaType.APPLICATION_JSON).build();
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to serialize truck", e);
+            return Response.serverError()
+                    .entity("{\"error\":\"Failed to serialize response\"}")
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        }
     }
 
     @POST
