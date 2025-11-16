@@ -174,7 +174,9 @@ public class Service {
             @Parameter(description = "Filter by location ID") @QueryParam("location_id") Integer locationId) {
 
         List<Schedule> results;
-
+        // When entering the data for schedule, make sure you don't add a 0 in front of a single digit date or month
+        // e.g., use 2024-6-5 instead of 2024-06-05. Could also be validated better in CRUD operations, maybe.
+        //Also, I need more data to _fully_ test this endpoint's filtering logic.
         if (date != null && locationId != null) {
             // Filter by date first
             results = scheduleDao.getByPropertyEqual("date", date);
@@ -189,7 +191,16 @@ public class Service {
             results = scheduleDao.getAll();
         }
 
-        return Response.ok(results).build();
+        try {
+            String json = objectMapper.writeValueAsString(results);
+            return Response.ok(json, MediaType.APPLICATION_JSON).build();
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to serialize schedule list", e);
+            return Response.serverError()
+                    .entity("{\"error\":\"Failed to serialize schedule results\"}")
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        }
     }
 
     @POST
