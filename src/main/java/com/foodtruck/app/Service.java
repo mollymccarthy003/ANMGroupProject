@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Path("/api")
+@Path("/")
 @Tag(name = "Food Truck API", description = "Operations for managing food trucks and schedules")
 public class Service {
 

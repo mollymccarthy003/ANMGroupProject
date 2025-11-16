@@ -30,7 +30,7 @@ public class Database {
     private void loadProperties() {
         properties = new Properties();
         try {
-            properties.load(this.getClass().getResourceAsStream("/database.properties"));
+            properties.load(this.getClass().getResourceAsStream("/hibernate.properties"));
         } catch (Exception e) {
             logger.error("Cannot load database properties", e);
         }
@@ -51,16 +51,16 @@ public class Database {
         if (connection != null) return;
 
         try {
-            Class.forName(properties.getProperty("driver"));
+            Class.forName(properties.getProperty("hibernate.connection.driver_class"));
         } catch (ClassNotFoundException e) {
             throw new Exception("MySQL Driver not found", e);
         }
 
-        String url = properties.getProperty("url");
+        String url = properties.getProperty("hibernate.connection.url");
         connection = DriverManager.getConnection(
                 url,
-                properties.getProperty("username"),
-                properties.getProperty("password")
+                properties.getProperty("hibernate.connection.username"),
+                properties.getProperty("hibernate.connection.password")
         );
     }
 
