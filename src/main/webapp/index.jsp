@@ -26,6 +26,8 @@
     <li>PUT /api/trucks/{id} - Update truck</li>
     <li>DELETE /api/trucks/{id} - Delete truck</li>
     <li>GET /api/schedule - List all schedule entries</li>
+    <!-- TODO: We need to normalize this endpoint. Right now cleanDB.sql has the format:  5/7/2026,
+            but the API expects YYYY-MM-DD. We need to pick one standard. -->
     <li>GET /api/schedule?date=YYYY-MM-DD - Filter by date</li>
     <li>GET /api/schedule?location_id={id} - Filter by location</li>
     <li>POST /api/schedule - Add a schedule entry</li>
