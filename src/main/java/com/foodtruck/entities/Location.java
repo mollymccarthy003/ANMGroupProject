@@ -1,6 +1,6 @@
 package com.foodtruck.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -35,8 +35,9 @@ public class Location {
     @Column(name = "longitude")
     private Double longitude;
 
-    @OneToMany(mappedBy = "location")
-    @JsonBackReference
+    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
+    // Added JsonIgnore to make it clear that schedules should not be serialized with Location
+    @JsonIgnore
     private List<Schedule> schedules;
 
 
