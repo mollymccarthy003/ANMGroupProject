@@ -1,6 +1,6 @@
 package com.foodtruck.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -20,10 +20,10 @@ public class Truck {
     @Column(name="food_type")
     private String foodType;
 
-    @OneToMany(mappedBy = "truck")
-    @JsonBackReference
+    @OneToMany(mappedBy = "truck", fetch = FetchType.LAZY)
+    // Added JsonIgnore to make it clear that schedules should not be serialized with Truck
+    @JsonIgnore
     private List<Schedule> schedules;
-
 
     /**
      * Default Truck constructor
