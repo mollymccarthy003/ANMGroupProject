@@ -3,8 +3,6 @@ package com.foodtruck.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.foodtruck.app.Service;
-import com.foodtruck.entities.Schedule;
-import com.foodtruck.entities.Truck;
 import com.foodtruck.testsupport.DbReset;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
