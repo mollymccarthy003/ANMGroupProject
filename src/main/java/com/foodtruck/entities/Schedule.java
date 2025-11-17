@@ -2,7 +2,6 @@ package com.foodtruck.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "schedules")
@@ -14,12 +13,10 @@ public class Schedule {
 
     @ManyToOne
     @JoinColumn(name = "truck_id")
-    @JsonManagedReference  // prevents recursion
     private Truck truck;
 
     @ManyToOne
     @JoinColumn(name = "location_id")
-    @JsonManagedReference
     private Location location;
 
     @Column(name = "day_of_week")
