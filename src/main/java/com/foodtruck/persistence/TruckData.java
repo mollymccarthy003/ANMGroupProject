@@ -6,15 +6,19 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+/**
+ * Data access class for Truck entities.
+ * Provides basic operations to interact with the database.
+ */
 public class TruckData {
     private final Logger logger = LogManager.getLogger(this.getClass());
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
     /**
-     * Get truck by id
+     * Retrieves a Truck entity by its ID.
      *
-     * @param id - trucks id
-     * @return truck
+     * @param id The ID of the Truck
+     * @return The Truck instance if found, otherwise null
      */
     public Truck getById(int id) {
         Session session = sessionFactory.openSession();

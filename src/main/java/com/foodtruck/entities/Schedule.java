@@ -3,31 +3,43 @@ package com.foodtruck.entities;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ * This entity maps to the "schedules" table in the database.
+ * Each schedule links a Truck to a Location and includes day, date, and start/end times.
+ */
 @Entity
 @Table(name = "schedules")
 public class Schedule {
+
+    /** Unique identifier for the schedule */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native")
     private int id;
 
+    /** Truck assigned to this schedule */
     @ManyToOne
     @JoinColumn(name = "truck_id")
     private Truck truck;
 
+    /** Location assigned to this schedule */
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
 
+    /** Day of the week for this schedule (e.g., Monday) */
     @Column(name = "day_of_week")
     private String dayOfWeek;
 
+    /** Date for this schedule  */
     @Column(name = "date")
     private String date;
 
+    /** Start time for this schedule  */
     @Column(name = "start_time")
     private String startTime;
 
+    /** End time for this schedule */
     @Column(name = "end_time")
     private String endTime;
 
@@ -174,5 +186,6 @@ public class Schedule {
         this.endTime = endTime;
     }
 
+    /** @return the location (alias for getLocation) */
     public Location getLocationId() { return location; }
 }

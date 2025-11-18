@@ -10,13 +10,14 @@
     </style>
 </head>
 <body>
-<h1>Welcome to the Food Truck App</h1>
+<h1>Food Truck Locator API</h1>
 <nav>
     <a href="index.jsp">Home</a>
     <a href="swagger.jsp">API Documentation</a>
 </nav>
+<p>Discover when and where your favorite food trucks appear.</p>
 
-<p>Use the links above to explore the app or view API documentation.</p>
+<p>Use the links above to view API documentation and demo.</p>
 
 <h2>Available Endpoints</h2>
 <ul>
@@ -38,8 +39,6 @@
     <li>PUT /api/trucks/{id} - Update truck</li>
     <li>DELETE /api/trucks/{id} - Delete truck</li>
     <li>GET /api/schedule - List all schedule entries</li>
-    <!-- TODO: We need to normalize this endpoint. For now I just changed it to the format
-            Austin used to in the DB seed script - Just to avoid any confusion for now -->
     <li>GET /api/schedule?date=M/D/YYYY - Filter by date</li>
     <li>GET /api/schedule?location_id={id} - Filter by location</li>
     <li>

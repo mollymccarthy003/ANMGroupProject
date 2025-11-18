@@ -74,8 +74,4 @@ Instead of building their own databases from scratch, **developers** can use thi
 
 ## 👩‍💻 Team Members and Roles
 
-| Name               | Role                        | Responsibilities                                                                                                                             |
-|--------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| **Austin Spriggs** | *Database, AWS, Swagger*    | Designs database schema, writes SQL scripts, and creates entity classes. Ensures correct relationships and data integrity. Debugs Swagger UI |
-| **Molly McCarthy** | *Endpoints and Swagger*     | Implements REST endpoints, handles requests and responses, and connects controllers to the data layer. Swagger UI and json responses         |
-| **Nick Hanson**    | *Unit and Endpoint Testing* | Performs unit and endpoint testing and debugging.                                                                                            |
+[TeamInformation](TeamInformation.md)
