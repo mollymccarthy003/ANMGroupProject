@@ -6,44 +6,55 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
 
+/**
+ * This entity maps to the "locations" table in the database.
+ * A location can have multiple schedules associated with it.
+ */
 @Entity
 @Table(name = "locations")
 public class Location {
+
+    /** Unique identifier for the location */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native")
     private int id;
 
+    /** Name of the location */
     @Column(name = "name")
     private String name;
 
+    /** Street address of the location */
     @Column(name = "address")
     private String address;
 
+    /** State where the location is situated */
     @Column(name = "state")
     private String state;
 
+    /** Zip code of the location */
     @Column(name = "zip")
     private int zip;
 
+    /** Country of the location */
     @Column(name = "country")
     private String country;
 
+    /** Latitude coordinate of the location */
     @Column(name = "latitude")
     private Double latitude;
 
+    /** Longitude coordinate of the location */
     @Column(name = "longitude")
     private Double longitude;
 
+    /** Schedules associated with this location (not serialized in JSON) */
     @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
-    // Added JsonIgnore to make it clear that schedules should not be serialized with Location
     @JsonIgnore
     private List<Schedule> schedules;
 
-
     /**
-     * Default Location constructor
-     *
+     * Default constructor required by JPA.
      */
     public Location() {
 

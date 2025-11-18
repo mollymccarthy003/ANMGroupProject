@@ -19,11 +19,11 @@ Our mission is to design a reliable and user-friendly RESTful API that connects 
 
 ## 👩‍💻 Team Members and Roles
 
-| Name               | Role                         | Responsibilities |
-|--------------------|------------------------------|------------------|
-| **Austin Spriggs** | *Database & Models Lead*     | Designs database schema, writes SQL scripts, and creates entity classes. Ensures correct relationships and data integrity. |
-| **Molly McCarthy** | *API & Controller Developer* | Implements REST endpoints, handles requests and responses, and connects controllers to the data layer. Responsible for business logic and JSON response structure. |
-| **Nick**           | *Unit Testing and Swagger*   | Creates Swagger/OpenAPI specification, sets up Swagger UI for testing, and ensures documentation matches API functionality. Performs endpoint testing and debugging. |
+| Name               | Role                        | Responsibilities                                                                                                                             |
+|--------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| **Austin Spriggs** | *Database, AWS, Swagger*    | Designs database schema, writes SQL scripts, and creates entity classes. Ensures correct relationships and data integrity. Debugs Swagger UI |
+| **Molly McCarthy** | *Endpoints and Swagger*     | Implements REST endpoints, handles requests and responses, and connects controllers to the data layer. Swagger UI and json responses         |
+| **Nick Hanson**    | *Unit and Endpoint Testing* | Performs unit and endpoint testing and debugging.                                                                                            |
 
 ---
 
@@ -65,7 +65,7 @@ Our mission is to design a reliable and user-friendly RESTful API that connects 
 ## 💼 Team Résumé
 
 ### **Project Name:** Food Truck Locator API
-**Duration:** 2025  
+**Duration:** Fall 2025  
 **Team Size:** 3  
 **Technologies:** Java, MySQL, Hibernate/JDBC, Swagger, Log4j2, GitHub
 
