@@ -173,6 +173,4 @@ public class Schedule {
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
-
-    public Location getLocationId() { return location; }
 }
