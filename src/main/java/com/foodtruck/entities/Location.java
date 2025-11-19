@@ -49,7 +49,7 @@ public class Location {
     private Double longitude;
 
     /** Schedules associated with this location (not serialized in JSON) */
-    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Schedule> schedules;
 
