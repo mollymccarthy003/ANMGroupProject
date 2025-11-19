@@ -4,6 +4,9 @@ import com.foodtruck.entities.Location;
 import com.foodtruck.entities.Schedule;
 import com.foodtruck.entities.Truck;
 import com.foodtruck.persistence.GenericDao;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -125,7 +128,18 @@ public class Service {
             description = "Creates a new food truck record",
             responses = {
                     @ApiResponse(responseCode = "201", description = "Truck created successfully")
-            }
+            },
+            requestBody = @RequestBody(
+                    description = "Truck object to add",
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(
+                                    implementation = Truck.class,
+                                    example = "{\"name\":\"Thailand in a Truck\", \"foodType\":\"Thai\"}"
+                            )
+                    )
+            )
     )
     public Response addTruck(
             @Parameter(description = "Truck object to add", required = true) Truck truck) {
@@ -167,7 +181,18 @@ public class Service {
             responses = {
                     @ApiResponse(responseCode = "200", description = "Truck updated successfully"),
                     @ApiResponse(responseCode = "404", description = "Truck not found")
-            }
+            },
+            requestBody = @RequestBody(
+                    description = "Updated truck object",
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(
+                                    implementation = Truck.class,
+                                    example = "{\"name\":\"Thailand in a Truck\", \"foodType\":\"Thai\"}"
+                            )
+                    )
+            )
     )
     public Response updateTruck(
             @Parameter(description = "ID of the truck to update", required = true)
@@ -283,7 +308,25 @@ public class Service {
             description = "Creates a new schedule for a truck at a location",
             responses = {
                     @ApiResponse(responseCode = "201", description = "Schedule created successfully")
-            }
+            },
+            requestBody = @RequestBody(
+                    description = "Schedule object to add",
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(
+                                    implementation = Schedule.class,
+                                    example = "{\n" +
+                                            "  \"truck\": { \"id\": 1 },\n" +
+                                            "  \"location\": { \"id\": 1 },\n" +
+                                            "  \"dayOfWeek\": \"Friday\",\n" +
+                                            "  \"date\": \"5/9/2026\",\n" +
+                                            "  \"startTime\": \"8:00am\",\n" +
+                                            "  \"endTime\": \"4:00pm\"\n" +
+                                            "}"
+                            )
+                    )
+            )
     )
     public Response addSchedule(
             @Parameter(description = "Schedule object to add", required = true) Schedule schedule) {

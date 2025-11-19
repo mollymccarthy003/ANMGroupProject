@@ -20,6 +20,9 @@ import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
                 )
         }
 )
+/**
+ * Config class for Food Truck API Swagger Integration
+ */
 public class SwaggerConfig extends ResourceConfig {
     /**
      * Default constructor
