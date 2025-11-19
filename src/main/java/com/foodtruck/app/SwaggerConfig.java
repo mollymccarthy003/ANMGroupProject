@@ -15,11 +15,14 @@ import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
         ),
         servers = {
                 @Server(
-                        url = "FoodTruckAPI_war/api",
+                        url = "/FoodTruckAPI_war/api",
                         description = "Base API Path"
                 )
         }
 )
+/**
+ * Config class for Food Truck API Swagger Integration
+ */
 public class SwaggerConfig extends ResourceConfig {
     /**
      * Default constructor
