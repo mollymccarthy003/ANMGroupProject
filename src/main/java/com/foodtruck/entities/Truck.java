@@ -30,7 +30,7 @@ public class Truck {
     private String foodType;
 
     /** List of schedules for this truck (not serialized to JSON) */
-    @OneToMany(mappedBy = "truck", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "truck", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Schedule> schedules;
 
