@@ -15,7 +15,7 @@ import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
         ),
         servers = {
                 @Server(
-                        url = "/FoodTruckAPI_war/api",
+                        url = "/api",
                         description = "Base API Path"
                 )
         }
