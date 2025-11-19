@@ -130,7 +130,24 @@ public class Service {
     public Response addTruck(
             @Parameter(description = "Truck object to add", required = true) Truck truck) {
         int id = truckDao.insert(truck);
-        return Response.status(Response.Status.CREATED).entity(truckDao.getById(id)).build();
+        Schedule created = scheduleDao.getById(id);
+
+        // Serialize + return
+        try {
+            String json = objectMapper.writeValueAsString(created);
+            return Response
+                    .status(Response.Status.CREATED)
+                    .entity(json)
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to serialize schedule", e);
+            return Response.serverError()
+                    .entity("{\"error\":\"Failed to serialize response\"}")
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        }
     }
 
     /**
@@ -156,11 +173,17 @@ public class Service {
             @Parameter(description = "ID of the truck to update", required = true)
             @PathParam("id") int id,
             @Parameter(description = "Updated truck object", required = true) Truck truck) {
-        Truck existing = truckDao.getById(id);
-        if (existing == null) return Response.status(Response.Status.NOT_FOUND).build();
-        truck.setId(id);
-        truckDao.update(truck);
-        return Response.ok(truckDao.getById(id)).build();
+        try {
+            Truck updated = truckDao.getById(id);
+            String json = objectMapper.writeValueAsString(updated);
+            return Response.ok(json, MediaType.APPLICATION_JSON).build();
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to serialize truck", e);
+            return Response.serverError()
+                    .entity("{\"error\":\"Failed to serialize response\"}")
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        }
     }
 
     /**
