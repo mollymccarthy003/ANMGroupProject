@@ -21,7 +21,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Path("/")
+/**
+ * RESTful service providing endpoints to manage food truck information
+ * All endpoints return JSON responses and use standard HTTP status codes for success and failure.
+ */
+@Path("/api")
 @Tag(name = "Food Truck API", description = "Operations for managing food trucks and schedules")
 public class Service {
 
@@ -35,7 +39,11 @@ public class Service {
     // ----------------------------
     // FOOD TRUCK ENDPOINTS
     // ----------------------------
-
+    /**
+     * Retrieves all food trucks.
+     *
+     * @return JSON list of all {@link Truck} objects with HTTP 200, or error JSON with HTTP 500.
+     */
     @GET
     @Path("/trucks")
     @Produces(MediaType.APPLICATION_JSON)
@@ -66,6 +74,13 @@ public class Service {
         }
     }
 
+    /**
+     * Retrieves a single food truck by ID.
+     *
+     * @param id ID of the truck to retrieve.
+     * @return JSON representation of the {@link Truck} with HTTP 200, or HTTP 404 if not found,
+     *         or error JSON with HTTP 500 on serialization error.
+     */
     @GET
     @Path("/trucks/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -95,6 +110,12 @@ public class Service {
         }
     }
 
+    /**
+     * Creates a new food truck.
+     *
+     * @param truck {@link Truck} object to create.
+     * @return The created {@link Truck} JSON with HTTP 201.
+     */
     @POST
     @Path("/trucks")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -112,6 +133,13 @@ public class Service {
         return Response.status(Response.Status.CREATED).entity(truckDao.getById(id)).build();
     }
 
+    /**
+     * Updates an existing food truck by ID.
+     *
+     * @param id    ID of the truck to update.
+     * @param truck Updated {@link Truck} object.
+     * @return The updated {@link Truck} JSON with HTTP 200, or HTTP 404 if not found.
+     */
     @PUT
     @Path("/trucks/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -135,6 +163,12 @@ public class Service {
         return Response.ok(truckDao.getById(id)).build();
     }
 
+    /**
+     * Deletes a food truck by ID.
+     *
+     * @param id ID of the truck to delete.
+     * @return HTTP 204 on success, or HTTP 404 if truck not found.
+     */
     @DELETE
     @Path("/trucks/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -159,6 +193,14 @@ public class Service {
     // SCHEDULE ENDPOINTS
     // ----------------------------
 
+    /**
+     * Retrieves schedule entries.
+     *
+     * @param date       Optional filter by date (YYYY-MM-DD).
+     * @param locationId Optional filter by location ID.
+     * @return List of {@link Schedule} entries matching the filters with HTTP 200,
+     *         or error JSON with HTTP 500 on serialization error.
+     */
     @GET
     @Path("/schedule")
     @Produces(MediaType.APPLICATION_JSON)
@@ -203,6 +245,12 @@ public class Service {
         }
     }
 
+    /**
+     * Creates a new schedule entry.
+     *
+     * @param schedule {@link Schedule} object to create.
+     * @return The created {@link Schedule} JSON with HTTP 201.
+     */
     @POST
     @Path("/schedule")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -220,6 +268,12 @@ public class Service {
         return Response.status(Response.Status.CREATED).entity(scheduleDao.getById(id)).build();
     }
 
+    /**
+     * Deletes a schedule entry by ID.
+     *
+     * @param id ID of the schedule entry to delete.
+     * @return HTTP 204 on success, or HTTP 404 if schedule not found.
+     */
     @DELETE
     @Path("/schedule/{id}")
     @Produces(MediaType.APPLICATION_JSON)

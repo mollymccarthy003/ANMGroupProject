@@ -19,10 +19,20 @@ import java.util.List;
  */
 public class GenericDao<T> {
 
+    /** Class type of the entity */
     private final Class<T> type;
+
+    /** Logger for debugging and error messages */
     private final Logger logger = LogManager.getLogger(this.getClass());
+
+    /** Hibernate SessionFactory for opening sessions */
     private final SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
+    /**
+     * Constructs a GenericDao for the given entity type.
+     *
+     * @param type The class of the entity
+     */
     public GenericDao(Class<T> type) {
         this.type = type;
     }
@@ -31,6 +41,12 @@ public class GenericDao<T> {
     // CRUD operations
     // ----------------------------
 
+    /**
+     * Retrieves an entity by its ID.
+     *
+     * @param id The ID of the entity
+     * @return The entity instance, or null if not found
+     */
     public T getById(int id) {
         Session session = getSession();
         try {
@@ -40,6 +56,12 @@ public class GenericDao<T> {
         }
     }
 
+    /**
+     * Inserts a new entity into the database.
+     *
+     * @param entity The entity to persist
+     * @return The generated ID of the entity, if retrievable
+     */
     public int insert(T entity) {
         Session session = getSession();
         Transaction tx = session.beginTransaction();
@@ -63,6 +85,11 @@ public class GenericDao<T> {
         }
     }
 
+    /**
+     * Updates an existing entity in the database.
+     *
+     * @param entity The entity with updated values
+     */
     public void update(T entity) {
         Session session = getSession();
         Transaction tx = session.beginTransaction();
@@ -77,6 +104,11 @@ public class GenericDao<T> {
         }
     }
 
+    /**
+     * Deletes an entity from the database.
+     *
+     * @param entity The entity to delete
+     */
     public void delete(T entity) {
         Session session = getSession();
         Transaction tx = session.beginTransaction();
@@ -108,6 +140,13 @@ public class GenericDao<T> {
     // Property search helpers
     // ----------------------------
 
+    /**
+     * Retrieves entities where a property matches exactly the given value.
+     *
+     * @param propertyName The property to filter by
+     * @param value        The exact value to match
+     * @return List of matching entities
+     */
     public List<T> getByPropertyEqual(String propertyName, String value) {
         Session session = getSession();
         try {
@@ -121,6 +160,13 @@ public class GenericDao<T> {
         }
     }
 
+    /**
+     * Retrieves entities where a property contains the given value.
+     *
+     * @param propertyName The property to filter by
+     * @param value        The substring to match (like %value%)
+     * @return List of matching entities
+     */
     public List<T> getByPropertyLike(String propertyName, String value) {
         Session session = getSession();
         try {
@@ -138,6 +184,12 @@ public class GenericDao<T> {
     // ----------------------------
     // Helper
     // ----------------------------
+
+    /**
+     * Opens a new Hibernate session.
+     *
+     * @return A session from the SessionFactory
+     */
     private Session getSession() {
         return sessionFactory.openSession();
     }

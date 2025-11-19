@@ -21,6 +21,9 @@ import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
         }
 )
 public class SwaggerConfig extends ResourceConfig {
+    /**
+     * Default constructor
+     */
     public SwaggerConfig() {
         // Register your REST endpoints explicitly
         register(Service.class);
