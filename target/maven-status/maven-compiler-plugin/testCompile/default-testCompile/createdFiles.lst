@@ -1,6 +1,8 @@
 com\foodtruck\persistence\ScheduleDaoTest.class
 com\foodtruck\testsupport\DbReset.class
 com\foodtruck\persistence\LocationDataTest.class
+com\foodtruck\app\AppTest.class
 com\foodtruck\testsupport\Database.class
 com\foodtruck\persistence\GenericDaoTest.class
 com\foodtruck\persistence\TruckDataTest.class
+com\foodtruck\service\ServiceTest.class
