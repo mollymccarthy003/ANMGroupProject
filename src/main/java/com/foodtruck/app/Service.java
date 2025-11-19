@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * RESTful service providing endpoints to manage food truck information
  * All endpoints return JSON responses and use standard HTTP status codes for success and failure.
  */
-@Path("/")
+@Path("/api")
 @Tag(name = "Food Truck API", description = "Operations for managing food trucks and schedules")
 public class Service {
 
