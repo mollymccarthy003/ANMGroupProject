@@ -1,9 +1,25 @@
 package com.foodtruck.app;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.servers.Server;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Food Truck Locator API",
+                version = "1.0",
+                description = "API for retrieving food truck data"
+        ),
+        servers = {
+                @Server(
+                        url = "/api",
+                        description = "Base API Path"
+                )
+        }
+)
 public class SwaggerConfig extends ResourceConfig {
     public SwaggerConfig() {
         // Register your REST endpoints explicitly
