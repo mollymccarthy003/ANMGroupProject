@@ -1,4 +1,4 @@
-package com.foodtruck.restdemo;
+package com.foodtruck.app;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

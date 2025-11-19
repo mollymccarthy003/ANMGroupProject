@@ -20,8 +20,9 @@ public class AppTest {
         // Check that the expected classes are present
         assertTrue(classes.contains(Service.class));
         assertTrue(classes.contains(SwaggerConfig.class));
+        assertTrue(classes.contains(HelloWorld.class));
         // Optional (can delete if not wanted later) - this locks in so that nothing weird gets added.
         // Just make sure that if you add more classes later, you update this test
-        assertEquals(2, classes.size());
+        assertEquals(3, classes.size());
     }
 }

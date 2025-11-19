@@ -24,6 +24,7 @@ public class App extends Application {
 
         // Swagger / OpenAPI classes
         classes.add(SwaggerConfig.class);
+        classes.add(HelloWorld.class);
 
         return classes;
     }
