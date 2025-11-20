@@ -198,16 +198,29 @@ public class Service {
             @Parameter(description = "ID of the truck to update", required = true)
             @PathParam("id") int id,
             @Parameter(description = "Updated truck object", required = true) Truck truck) {
-        try {
-            Truck updated = truckDao.getById(id);
-            String json = objectMapper.writeValueAsString(updated);
-            return Response.ok(json, MediaType.APPLICATION_JSON).build();
-        } catch (JsonProcessingException e) {
-            logger.error("Failed to serialize truck", e);
-            return Response.serverError()
-                    .entity("{\"error\":\"Failed to serialize response\"}")
-                    .type(MediaType.APPLICATION_JSON)
-                    .build();
+            Truck existing = truckDao.getById(id);
+            if (existing == null) {
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+
+            // 2. Apply incoming changes
+            // Option A: copy fields into existing entity
+            existing.setName(truck.getName());
+            existing.setFoodType(truck.getFoodType());
+
+            // 3. Persist update
+            truckDao.update(existing);
+
+            // 4. Return updated JSON
+            try {
+                String json = objectMapper.writeValueAsString(existing);
+                return Response.ok(json, MediaType.APPLICATION_JSON).build();
+            } catch (JsonProcessingException e) {
+                logger.error("Failed to serialize updated truck", e);
+                return Response.serverError()
+                        .entity("{\"error\":\"Failed to serialize response\"}")
+                        .type(MediaType.APPLICATION_JSON)
+                        .build();
         }
     }
 
