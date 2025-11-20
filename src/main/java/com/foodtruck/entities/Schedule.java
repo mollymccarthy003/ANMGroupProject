@@ -1,5 +1,6 @@
 package com.foodtruck.entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -15,6 +16,7 @@ public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native")
+    @Schema(readOnly = true)
     private int id;
 
     /** Truck assigned to this schedule */
