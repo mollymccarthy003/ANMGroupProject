@@ -1,6 +1,7 @@
 package com.foodtruck.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -18,6 +19,7 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native")
+    @Schema(readOnly = true)
     private int id;
 
     /** Name of the location */
